@@ -34,12 +34,7 @@ const FormTeacher = () => {
                 navigate("/form/teacher")
                 return
             }
-            const response = await fetch(`https://kaist.me/api/ksa/ksasf/vote.php?code=${code}&role=T`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
+            const response = await fetch(`https://kaist.me/api/ksa/ksasf/vote.php?code=${code}&role=T`)
             if ((await response.text()) === "Already Voted") {
                 window.alert("You've already voted.")
                 navigate("/form/student")
