@@ -83,16 +83,23 @@ const FormTeacher = () => {
                 <OptionContainer>
                     {
                         researchInfo
-                            .map((research, i) => (
-                                <Option
-                                    content={research.body[0]} disabled={research.isAvailable[0] === 0}
-                                    action={() => setSelected((rawSelected) => {
-                                        const selected = [...rawSelected]
-                                        selected[i] = !selected[i]
-                                        return selected
-                                    })}
-                                />
-                            ))
+                            .map((research, i) => {
+                                let category = research.body[0]
+                                if (category.split("-")[0].length === 2) {
+                                    category = research.body[0][0] + "&" + research.body[0].slice(1)
+                                }
+                                return (
+                                    <Option
+                                        content={category} disabled={research.isAvailable[0] === 0}
+                                        action={() => setSelected((rawSelected) => {
+                                            const selected = [...rawSelected]
+                                            selected[i] = !selected[i]
+                                            return selected
+                                        })}
+                                    />
+                                )
+                            }
+                        )
                     }
                 </OptionContainer>
             </Question>
