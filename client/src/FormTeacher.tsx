@@ -35,12 +35,12 @@ const FormTeacher = () => {
                 return
             }
             const response = await fetch(`https://kaist.me/api/ksa/ksasf/vote.php?code=${code}&role=T`)
-            if ((await response.text()) === "Already Voted") {
+            const data = (await response.json()) as ResearchData[] | { content: string }
+            if ("content" in data) {
                 window.alert("You've already voted.")
                 navigate("/form/student")
                 return
             }
-            const data = (await response.json()) as ResearchData[]
             if (data.length === 0) {
                 window.alert("Invalid identification code.")
                 navigate("/form/student")
