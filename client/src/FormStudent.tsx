@@ -69,7 +69,7 @@ const FormStudent = () => {
         }
         const selectedFirstIndex = selectedFirst.map((v, i) => [v, i] as [boolean, number]).filter(([v]) => v).map(([_, i]) => i)
         const selectedSecondIndex = selectedSecond.findIndex((v) => v)
-        fetch(`https://kaist.me/api/ksa/ksasf/do.php?code=${code}&role=S&p1=${myCategoryResearchInfo[selectedFirstIndex[0]].code}&p2=${myCategoryResearchInfo[selectedFirstIndex[1]].code}&p3=${otherCategoryResearchInfo[selectedSecondIndex]}`)
+        fetch(`https://kaist.me/api/ksa/ksasf/do.php?code=${code}&role=S&p1=${myCategoryResearchInfo[selectedFirstIndex[0]].code}&p2=${myCategoryResearchInfo[selectedFirstIndex[1]].code}&p3=${otherCategoryResearchInfo[selectedSecondIndex].code}`)
         navigate("/form/result")
     }
 

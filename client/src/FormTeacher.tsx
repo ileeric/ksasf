@@ -1,11 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react"
-import React from "react"
 import { useEffect, useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
-import { requestQuery } from "./post"
-import { Research } from "../../server/src/researchInfo"
-import { ServerResCheckValid, ServerResResearchInfo, ServerResSubmit } from "../../interface"
 import { Option, OptionContainer, Question, QuestionHeader, Title } from "./components/Form"
 
 type ResearchData = {
@@ -67,7 +63,7 @@ const FormTeacher = () => {
             return
         }
         const selectedIndex = selected.map((v, i) => [v, i] as [boolean, number]).filter(([v]) => v).map(([_, i]) => i)
-        fetch(`https://kaist.me/api/ksa/ksasf/do.php?code=${code}&role=T&p1=${researchInfo[selectedIndex[0]].code}&p2=${researchInfo[selectedIndex[1]].code}&p3=${researchInfo[selectedIndex[2]]}`)
+        fetch(`https://kaist.me/api/ksa/ksasf/do.php?code=${code}&role=T&p1=${researchInfo[selectedIndex[0]].code}&p2=${researchInfo[selectedIndex[1]].code}&p3=${researchInfo[selectedIndex[2]].code}`)
         navigate("/form/result")
     }
 
