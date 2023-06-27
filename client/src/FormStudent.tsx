@@ -45,7 +45,7 @@ const FormStudent = () => {
             }
             const data = (await response.json()) as { category1: ResearchData[], category2: ResearchData[] }
             if (data.category1.length === 0) {
-                window.alert("Invalid identication code.")
+                window.alert("Invalid identification code.")
                 navigate("/form/student")
                 return
             }

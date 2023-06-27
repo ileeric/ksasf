@@ -44,12 +44,17 @@ const FormTeacher = () => {
                     "Content-Type": "application/json"
                 }
             })
+            if (response.toString() === "Already Voted") {
+                window.alert("You've already voted.")
+                navigate("/form/student")
+                return
+            }
             const data = (await response.json()) as ResearchData[]
-            // if (!data.content.result) {
-            //     window.alert(res.content.message)
-            //     navigate("/form/student")
-            //     return
-            // }
+            if (data.length === 0) {
+                window.alert("Invalid identification code.")
+                navigate("/form/student")
+                return
+            }
             const researchInfo = data
             setResearchInfo(researchInfo)
             setSelected(new Array(researchInfo.length).fill(false))
@@ -62,17 +67,8 @@ const FormTeacher = () => {
             return
         }
         const selectedIndex = selected.map((v, i) => [v, i] as [boolean, number]).filter(([v]) => v).map(([_, i]) => i)
-        const res = await fetch(`https://kaist.me/api/ksa/ksasf/do.php?code=${code}&role=T&p1=${researchInfo[selectedIndex[0]].code}&p2=${researchInfo[selectedIndex[1]].code}&p3=${researchInfo[selectedIndex[2]]}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-        // if (res.content.result) navigate("/form/result")
-        // else {
-        //     window.alert("There was a problem communicating, please try again later.")
-        //     navigate("/form/teacher")
-        // }
+        fetch(`https://kaist.me/api/ksa/ksasf/do.php?code=${code}&role=T&p1=${researchInfo[selectedIndex[0]].code}&p2=${researchInfo[selectedIndex[1]].code}&p3=${researchInfo[selectedIndex[2]]}`)
+        navigate("/form/result")
     }
 
     return (
