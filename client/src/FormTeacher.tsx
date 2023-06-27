@@ -40,7 +40,7 @@ const FormTeacher = () => {
                     "Content-Type": "application/json"
                 }
             })
-            if (response.toString() === "Already Voted") {
+            if ((await response.text()) === "Already Voted") {
                 window.alert("You've already voted.")
                 navigate("/form/student")
                 return
@@ -98,7 +98,6 @@ const FormTeacher = () => {
                                     })}
                                 />
                             ))
-
                     }
                 </OptionContainer>
             </Question>

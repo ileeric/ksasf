@@ -38,7 +38,7 @@ const FormStudent = () => {
                 return
             }
             const response = await fetch(`https://kaist.me/api/ksa/ksasf/vote.php?code=${code}&role=S`)
-            if (response.toString() === "Already Voted") {
+            if ((await response.text()) === "Already Voted") {
                 window.alert("You've already voted.")
                 navigate("/form/student")
                 return
