@@ -22,7 +22,7 @@ const FormTeacher = () => {
         (async () => {
             const curTime = new Date()
             const curUTCTime = curTime.getTime() + curTime.getTimezoneOffset() * 60 * 1000
-            const finishTime = new Date("2023-06-27T18:30:00+09:00")
+            const finishTime = new Date("2023-06-27T18:45:00+09:00")
             const finishUTCTime = finishTime.getTime() + finishTime.getTimezoneOffset() * 60 * 1000
             if (curUTCTime > finishUTCTime) {
                 window.alert("The voting time is over.")
